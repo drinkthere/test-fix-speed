@@ -4,11 +4,11 @@ const { v4: uuidv4 } = require("uuid");
 const { log } = require("./utils/log");
 const symbol = "BNBUSDT";
 
+const dotenv = require("dotenv");
+dotenv.config();
 const fixClient = new BinanceFixClient({
-    publicKey:
-        "fF1u29YTnrxqhxIRe7c9EyqekYsIP6vGuNOOZf4UzfLC2oOxCCYvZKreqglL8xVy",
-    privateKey:
-        "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIE8GXIpHKuRM4Sxbdxy9KGomP9CiTLT8mKJpgy++bHX1\n-----END PRIVATE KEY-----",
+    publicKey: process.env.PUBLIC_KEY,
+    privateKey: process.env.PRIVATE_KEY,
     ignoreUnknowMessage: true,
 });
 
@@ -45,7 +45,6 @@ const main = async () => {
         });
         console.log(`${clientOrderId} CANCELSUBMITTED ${Date.now()}`);
         await sleep(1000);
-        process.exit();
     });
 };
 main();
