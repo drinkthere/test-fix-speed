@@ -494,7 +494,11 @@ class BinanceFixClient extends EventEmitter {
             } else {
                 status = message.OrdStatus;
             }
-            console.log(`${message.ClOrdID} ${status} ${Date.now()}`);
+            console.log(
+                `SPEED ${message.Symbol} ${
+                    message.ClOrdID
+                } CB${status} ${Date.now()}`
+            );
         } else {
             this.emit("message", message);
         }
